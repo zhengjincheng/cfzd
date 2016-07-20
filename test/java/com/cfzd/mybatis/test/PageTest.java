@@ -23,6 +23,8 @@ public class PageTest {
 	@After
 	public void tearDown() throws Exception {
 		System.out.println("--tearDown--");
+		org.thymeleaf.spring4.view.ThymeleafViewResolver x;
+		
 
 		if (session!=null ){
 			session.close();

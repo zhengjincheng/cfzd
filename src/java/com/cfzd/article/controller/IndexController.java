@@ -18,7 +18,7 @@ public class IndexController {
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView getArticle() throws Exception{
 		ModelAndView m=new ModelAndView();
-		m.addObject("articles", service.getArticle(1));
+		m.addObject("articles", service.getArticle(IArticleService.ARTICLE_HEADCOLUMN));
 		return m;
 	}
 }

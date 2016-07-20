@@ -1,5 +1,8 @@
 package com.cfzd.article.dao;
 
+import java.util.Collection;
+import java.util.List;
+
 import com.cfzd.article.bean.Article;
 
 public interface ArticleMapper {
@@ -50,4 +53,7 @@ public interface ArticleMapper {
      * @mbggenerated Tue Jul 19 07:10:25 CST 2016
      */
     int updateByPrimaryKey(Article record);
+    
+    Collection<Article> selectByArticleCateType(String articleCateType);
+
 }

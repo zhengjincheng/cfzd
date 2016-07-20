@@ -20,7 +20,7 @@ public class ArticleController {
 	private IArticleService service;
 	
 	@RequestMapping(method = RequestMethod.GET, produces="application/json;charset=UTF-8")
-	public @ResponseBody  List<ArticleBO> getArticle( @RequestParam("articleCateType") Integer articleCateType) throws Exception{
-		return service.getArticle(articleCateType);
+	public @ResponseBody  List<ArticleBO> getArticle( @RequestParam("articleCateType") String articleCateType) throws Exception{
+		return service.getArticle(articleCateType,1L,1L);
 	}
 }
