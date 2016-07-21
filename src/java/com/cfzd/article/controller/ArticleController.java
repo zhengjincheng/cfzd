@@ -23,4 +23,8 @@ public class ArticleController {
 	public @ResponseBody  List<ArticleBO> getArticle( @RequestParam("articleCateType") String articleCateType) throws Exception{
 		return service.getArticle(articleCateType,1L,1L);
 	}
+//	@RequestMapping(method = RequestMethod.GET, value="template")
+//	public @ResponseBody  List<ArticleBO> getArticleTemplate( @RequestParam("articleCateType") String articleCateType) throws Exception{
+//		return service.getArticle(articleCateType,1L,1L);
+//	}
 }
