@@ -34,9 +34,9 @@ public class ArticleControllerTest {
 	@Test
 
 	public void controllerExceptionHandler() throws Exception {
-		//String s=this.mockMvc.perform(MockMvcRequestBuilders.get("/article?articleCateType=1")).andReturn().getResponse().getContentAsString();
+		String s=this.mockMvc.perform(MockMvcRequestBuilders.get("/article?articleCateType=head&start=0&limit=2")).andReturn().getResponse().getContentAsString();
 
-		String s=this.mockMvc.perform(MockMvcRequestBuilders.get("/index")).andReturn().getResponse().getContentAsString();
+		//String s=this.mockMvc.perform(MockMvcRequestBuilders.get("/index")).andReturn().getResponse().getContentAsString();
 		System.out.println(s);
 	}
 

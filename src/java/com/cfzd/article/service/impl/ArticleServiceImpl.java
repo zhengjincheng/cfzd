@@ -2,7 +2,9 @@ package com.cfzd.article.service.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -28,10 +30,14 @@ public class ArticleServiceImpl implements IArticleService {
 
 	@Override
 	public List<ArticleBO> getArticle(String articleCateType, Long start, Long limit) throws Exception {
-		Article a = dao.selectByPrimaryKey(1);
-		ArticleBO bo = toArticleBO(a);
-		ArrayList<ArticleBO> bos = new ArrayList<ArticleBO>();
-		bos.add(bo);
+		Map map = new HashMap<>();
+		map.put("articleCateType", articleCateType);
+		map.put("sort", "id");
+		map.put("dir", "desc");
+		map.put("start", start);
+		map.put("limit", limit);
+		Collection<Article> a = dao.selectByMap(map);
+		List<ArticleBO> bos = toArticleBOs(a);
 		return bos;
 	}
 

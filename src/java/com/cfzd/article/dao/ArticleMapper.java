@@ -1,7 +1,7 @@
 package com.cfzd.article.dao;
 
 import java.util.Collection;
-import java.util.List;
+import java.util.Map;
 
 import com.cfzd.article.bean.Article;
 
@@ -55,5 +55,6 @@ public interface ArticleMapper {
     int updateByPrimaryKey(Article record);
     
     Collection<Article> selectByArticleCateType(String articleCateType);
+    Collection<Article> selectByMap(Map map);
 
 }
