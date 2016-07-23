@@ -13,35 +13,31 @@
 	rel="stylesheet" type="text/css">
 <script src="../static/jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"
 	type="text/javascript"></script>
+<script src="../static/cfzd-list-binding/list-binding.js"
+	type="text/javascript"></script>
 <!--	  <script src="infinite-scroll/js/admin/infinite-scoll.js" type="text/javascript"></script>-->
 </head>
 
 <body>
 	<div data-role="page" id="page">
-		<div id="tabs" data-role="tabs">
-		<div data-role="navbar">
-			<ul>
-				<li><a href="#anylink">书法</a></li>
-				<li><a href="#anylink">绘画</a></li>
-				<li><a href="#anylink">金石</a></li>
-				<li><a href="#anylink">另有</a></li>
-			</ul>
+	<div  data-role="header" data-position="fixed">
+		<div  data-role="tabs">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#anylink" onclick="">书法</a></li>
+					<li><a href="#anylink">绘画</a></li>
+					<li><a href="#anylink">金石</a></li>
+					<li><a href="#anylink">另有</a></li>
+				</ul>
+			</div>
 		</div>
-		</div>
+	</div>
+		<div  data-role="content">	
        	<ul data-role="listview" id="posts" >
-       	       	<li data-icon="false"><a href="#"><img style="width:100%" src="../static/images/s1-icon.jpg" /><h2>标题</h2><p>标题</p></a></li>
-       	       	<li data-icon="false"><a href="#"><img style="width:100%" src="../static/images/s1-icon.jpg" /><h2>标题</h2><p>标题</p></a></li>
-       	<li data-icon="false"><a href="#"><img style="width:100%" src="../static/images/s1-icon.jpg" /><h2>标题</h2><p>标题</p></a></li>
-				<!-- 
-      <li><img src="images/s1.jpg" /><p>标题<p></li>
-      <li><img src="images/s2.jpg" /><p>标题<p></li>
-      <li><img src="images/s3.jpg" /><p>标题<p></li>
-       -->
-			</ul>
-
-
-			
-		<div data-role="footer" data-position="fixed" data-fullscreen="true" id="footer">
+       	       
+		</ul>
+       </div>
+		<div data-role="footer" data-position="fixed"  id="footer">
 			<div data-role="navbar">
 				<ul>
 					<li><a href="./index" data-icon="home"  rel="external">首页</a></li>
@@ -62,7 +58,6 @@
 					var f=function() {
 						// End of the document reached?
 						if ($(document).height() - win.height()== win.scrollTop()) {
-							//$('#loading').show();
 							$.mobile.loading( "show", {
             							text: 'msgText',
             							//textVisible: textVisible,
@@ -84,9 +79,7 @@
 															+ '</p></a></li>');
 										});
 								
-								//$('#loading').hide();
 								$.mobile.loading( "hide" )
-								
 								$('#posts').listview( "refresh" );
 
 							});
