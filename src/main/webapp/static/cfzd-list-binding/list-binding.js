@@ -11,10 +11,11 @@ var ListBinding = function(ele, opt) {
 //定义ListBinding的方法
 ListBinding.prototype.setDataProvider = function(list) {
 	  this.dataProvider=list;
-	  this.empty();
+	  this.$element.empty();
+	  var lb=this;
       $.each(list,function(index, value) {
-    	  this.append(this.options.itemRender(value));
-      }
+    	  lb.$element.append(lb.options.itemRender.apply(lb,[value]));
+      });
 }
 
 //在插件中使用ListBinding对象
