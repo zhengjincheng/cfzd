@@ -7,8 +7,10 @@
 	content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
 <title>首页</title>
 
-<script src="../static/jquery-mobile/jquery-1.11.1.min.js"
+<script src="../static/jquery.mobile-1.4.5/jquery-1.11.1.js"
 	type="text/javascript"></script>
+	
+
 <link href="../static/jquery.mobile-1.4.5/jquery.mobile-1.4.5.css"
 	rel="stylesheet" type="text/css">
 <script src="../static/jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"
@@ -38,6 +40,7 @@
        	<ul data-role="listview" id="posts" >
        	       
 		</ul>
+		<div id="load" style="display:none;margin-top:2em;margin-left:-1em;margin-right:-1em"><a class="ui-btn ui-state-disabled" href="#">正在加载</a> </div>
        </div>
 		<div data-role="footer" data-position="fixed"  id="footer">
 			<div data-role="navbar">
@@ -55,45 +58,57 @@
 	<script type="text/javascript">
 		$(document).ready(
 				function() {
-					var ListView=function(element){
-					this.target=element;
-					this.articleType="calligraphy";
-					this.limit=5;
-					this.scroll=false;
-					this.dataProvider=[];
-					this.articleTypeChanged=false;
-					this.dataProviderChanged=false;
-					} 
+					var ListView;
+					ListView=function ListView(element, options) {
+					var defaults;
+                    defaults = {
+						limit:5,
+						beginload:function(){
+						},
+						endload:function(){
+						}
+					};
+						this.options = $.extend({}, defaults, options);
+						this.target=element;
+						this.articleType="calligraphy";
+						this.limit=5;
+						this.scroll=false;
+						this.dataProvider=[];
+						this.articleTypeChanged=false;
+						this.dataProviderChanged=false;
+					};
 					ListView.prototype.setScroll=function(){
 						this.scroll=true;
-					}
+					};
 					
 					ListView.prototype.itemRender=function(item){
 						return '<li data-icon="false"><a href="#"><img style="width:100%" src="'+item.icon+'" /><h2>'+ item.title+ '</h2><p>'+ item.title+ '</p></a></li>';
-					}
+					};
 					ListView.prototype.getDataProvider=function(){
 						if (typeof(this.dataProvider[this.articleType]) == "undefined"){
 							this.dataProvider[this.articleType]=[];
 						}
 						return this.dataProvider[this.articleType];
-					}
+					};
 					ListView.prototype.getRemoteData=function(){
 					
 						var start=this.getDataProvider().length;
 						var _this=this;
+						_this.options.beginload.apply(null,[]);
 						$.get('article?articleCateType='+this.articleType+'&start='+start+'&limit='+this.limit, function(data, status) {
+						_this.options.endload.apply(null,[]);
 							if (data!=null){
 									$.merge(_this.dataProvider[_this.articleType],data);
 									_this.dataProviderChanged=true;
 							}
 						});
-					}
+					};
 					ListView.prototype.setArticleType=function(articleType){
 						if (this.articleType!=articleType){
 						  this.articleType=articleType;
 						  this.articleTypeChanged=true;
 						  }
-					}
+					};
 					ListView.prototype.refresh=function(){
 						if (this.scroll){
 							lisview.getRemoteData()
@@ -115,22 +130,35 @@
 						this.articleTypeChanged=false;
 						this.dataProviderChanged=false;
 						
-					}
+					};
 					ListView.prototype.run=function(){
 						var _this = this;
 						return setInterval(function() {
 							_this.refresh();
 						},500); 
+					return ListView;
+					};
 					
-					}
-					var lisview=new ListView($('#posts'));
+					var lisview=new ListView($('#posts'),{beginload:function(){
+					  $("#load").css("display","block");
+					},endload:function(){
+					  $("#load").css("display","none");
+
+					}});
 					lisview.run();
 					
+					//$("#tabs").tabs({ active: 1 });
+					//$( "#tabs" ).tabs( ["option", "active", 1] );
 					$("#tabs a").click(function () {
 					    var b=this;
 						lisview.setArticleType(this.attributes.getNamedItem('data-article-type').nodeValue);
 						lisview.getRemoteData();
 					});
+					$('#tabs').tabs();
+					//$('#tabs').tabs({selected:0});
+					//'li:first'('#tabs').tabs({active:0});
+                     $('#tabs >li:first>a').addClass("ui-btn-active");
+
 					$(window).scroll(function(){
 						if ($(document).height() - $(window).height()== $(window).scrollTop()){
 							lisview.setScroll();
