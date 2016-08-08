@@ -1,5 +1,5 @@
 SET SESSION FOREIGN_KEY_CHECKS=0;
-use zhengjincheng;
+
 /* Drop Indexes */
 
 DROP INDEX index_account_id ON account;
@@ -13,6 +13,7 @@ DROP TABLE IF EXISTS account_log;
 DROP TABLE IF EXISTS account;
 DROP TABLE IF EXISTS article;
 DROP TABLE IF EXISTS article_category;
+DROP TABLE IF EXISTS authorities;
 DROP TABLE IF EXISTS user;
 
 
@@ -82,6 +83,16 @@ CREATE TABLE article_category
 );
 
 
+CREATE TABLE authorities
+(
+	id int NOT NULL,
+	role varchar(100),
+	user_id int NOT NULL,
+	PRIMARY KEY (id),
+	UNIQUE (id)
+);
+
+
 CREATE TABLE user
 (
 	id int NOT NULL AUTO_INCREMENT,
@@ -97,7 +108,9 @@ CREATE TABLE user
 	created_time time NOT NULL COMMENT '创建时间',
 	-- 更新时间
 	update_time time NOT NULL COMMENT '更新时间',
-	PRIMARY KEY (id)
+	PRIMARY KEY (id),
+	UNIQUE (name),
+	UNIQUE (name)
 );
 
 
@@ -121,6 +134,14 @@ ALTER TABLE article
 
 
 ALTER TABLE account
+	ADD FOREIGN KEY (user_id)
+	REFERENCES user (id)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE authorities
 	ADD FOREIGN KEY (user_id)
 	REFERENCES user (id)
 	ON UPDATE RESTRICT

@@ -6,7 +6,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
 <title>首页</title>
-<script src="../static/jquery-mobile/jquery-1.11.1.min.js"
+<script src="../static/jquery.mobile-1.4.5/jquery-1.11.1.js"
 	type="text/javascript"></script>
 
 <link rel="stylesheet" type="text/css"
@@ -21,11 +21,17 @@
 
 <body>
 	<div data-role="page" id="page">
-		<!-- 
-  <div data-role="header">
-    <h1>标题</h1>
-  </div>-->
-
+		<div  data-role="tabs">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#anylink" data-ajax="false">拍场</a></li>
+					<li><a href="#anylink" data-ajax="false">拍品</a></li>
+				</ul>
+			</div>
+			<div id="anylink"  ></div>
+		</div>
+		<ul data-role="listview" id="posts" >
+		</ul>
 		<div class="flexslider">
 			<ul class="slides" th:remove="all-but-first">
 				<li th:each="article:${articles}"><img
@@ -36,29 +42,13 @@
 				<li><img src="../static/images/s4.jpg" /></li>
 			</ul>
 		</div>
-		<div id="tabs" data-role="tabs">
-			<div data-role="navbar">
-				<ul>
-					<li><a href="#one" data-ajax="false">拍场</a></li>
-					<li><a href="#one" data-ajax="false">聚焦</a></li>
-					<li><a href="#one" data-ajax="false">艺家</a></li>
-					<li><a href="#one" data-ajax="false">风雅</a></li>
-				</ul>
-			</div>
-			<div class="ui-body-d ui-content" id="one">
-				<h1>First tab contents</h1>
-			</div>
-		</div>
 
+		<ul data-role="listview"  >
+		<li style="margin:1px 1px 1px 1px"><a href="#" style="padding:0 0 0 0;min-height:auto"><h5>千资百态，石不雕不成器</h5><p>结拍时间 :2016-08-08 23:00:00</p><img src="../static/images/s1.jpg" style="width:100%"></a></li>
+		<li style="margin:1px 1px 1px 1px"><a href="#" style="padding:0 0 0 0;min-height:auto"><h5>Warning</h5><p>Hot Chip</p><img src="../static/images/s2.jpg" style="width:100%"></a></li>
+		<li style="margin:1px 1px 1px 1px"><a href="#" style="padding:0 0 0 0;min-height:auto"><h5>Warning</h5><p>Hot Chip</p><img src="../static/images/s3.jpg" style="width:100%"></a></li>
 
-		<!-- <div data-role="navbar">
-			<ul>
-				<li><a href="#anylink" class="ui-btn-active ui-state-persist">拍场</a></li>
-				<li><a href="#anylink">聚焦</a></li>
-				<li><a href="#anylink">艺家</a></li>
-				<li><a href="#anylink">风雅</a></li>
-			</ul>
-		</div> -->
+		</ul>
 		<div data-role="footer" data-position="fixed" data-fullscreen="false">
 			<div data-role="navbar">
 				<ul>
