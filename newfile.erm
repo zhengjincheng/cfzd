@@ -12,7 +12,7 @@
 	<category_index>0</category_index>
 	<zoom>1.0</zoom>
 	<x>-72</x>
-	<y>3</y>
+	<y>0</y>
 	<default_color>
 		<r>128</r>
 		<g>128</g>
@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2016-07-09 08:41:41</creation_date>
-			<updated_date>2016-08-05 09:08:28</updated_date>
+			<updated_date>2016-09-03 14:19:36</updated_date>
 			<model_property>
 				<name>Project Name</name>
 				<value></value>
@@ -643,11 +643,11 @@
 		<table>
 			<id>0</id>
 			<height>137</height>
-			<width>154</width>
+			<width>201</width>
 				<font_name>Microsoft YaHei UI</font_name>
 				<font_size>9</font_size>
-			<x>114</x>
-			<y>384</y>
+			<x>132</x>
+			<y>360</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -663,7 +663,7 @@
 			<option></option>
 			<columns>
 				<normal_column>
-					<word_id>15</word_id>
+					<word_id>14</word_id>
 					<id>0</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -852,7 +852,7 @@
 			<option></option>
 			<columns>
 				<normal_column>
-					<word_id>13</word_id>
+					<word_id>11</word_id>
 					<id>4</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -1108,7 +1108,7 @@
 			<option></option>
 			<columns>
 				<normal_column>
-					<word_id>14</word_id>
+					<word_id>12</word_id>
 					<id>10</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -1373,7 +1373,7 @@
 			<option></option>
 			<columns>
 				<normal_column>
-					<word_id>12</word_id>
+					<word_id>10</word_id>
 					<id>15</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -1673,7 +1673,7 @@
 			<option></option>
 			<columns>
 				<normal_column>
-					<word_id>10</word_id>
+					<word_id>15</word_id>
 					<id>23</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -1970,7 +1970,7 @@
 			<option></option>
 			<columns>
 				<normal_column>
-					<word_id>11</word_id>
+					<word_id>13</word_id>
 					<id>30</id>
 					<description></description>
 					<unique_key_name></unique_key_name>

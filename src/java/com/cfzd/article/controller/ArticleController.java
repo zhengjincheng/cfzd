@@ -7,7 +7,6 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cfzd.article.bo.ArticleBO;
@@ -24,10 +23,6 @@ public class ArticleController {
 			Long limit) throws Exception {
 		return service.getArticle(articleCateType,start,limit);
 	}
-	// @RequestMapping(method = RequestMethod.GET, value="template")
-	// public @ResponseBody List<ArticleBO> getArticleTemplate(
-	// @RequestParam("articleCateType") String articleCateType) throws
-	// Exception{
-	// return service.getArticle(articleCateType,1L,1L);
-	// }
+	
+
 }
