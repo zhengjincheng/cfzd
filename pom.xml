@@ -166,7 +166,13 @@
 
 			</resource>
 			<resource>
-				<directory>src/java/com/cfzd/article/dao</directory>
+				<directory>src/java/com/cfzd/dao/article</directory>
+				<includes>
+					<include>*.xml</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/java/com/cfzd/dao/auction</directory>
 				<includes>
 					<include>*.xml</include>
 				</includes>

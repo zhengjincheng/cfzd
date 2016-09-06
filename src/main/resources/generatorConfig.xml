@@ -15,30 +15,51 @@
 			<property name="forceBigDecimals" value="false" />
 		</javaTypeResolver>
 
-		<javaModelGenerator targetPackage="com.cfzd.article.bean"
+		<javaModelGenerator targetPackage="com.cfzd.bean.auction"
 			targetProject="./src/java">
 			<property name="enableSubPackages" value="true" />
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
 
-		<sqlMapGenerator targetPackage="com.cfzd.article.dao"
+		<sqlMapGenerator targetPackage="com.cfzd.dao.auction"
 			targetProject="./src/java">
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
 
 		<javaClientGenerator type="XMLMAPPER"
-			targetPackage="com.cfzd.article.dao" targetProject="./src/java">
+			targetPackage="com.cfzd.dao.auction" targetProject="./src/java">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
+		<!--
 		<table tableName="%" enableCountByExample="false"
 			enableUpdateByExample="false" enableDeleteByExample="false"
 			enableSelectByExample="false" selectByExampleQueryId="false">
 			<generatedKey column="id" sqlStatement="Mysql" />
 		</table>
-		<!-- <table tableName="article_category" domainObjectName="ArticleCategory" 
+		 <table tableName="article_category" domainObjectName="ArticleCategory" 
 			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" 
 			enableSelectByExample="false" selectByExampleQueryId="false"></table> -->
-
+		<table tableName="auction" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+			<generatedKey column="id" sqlStatement="Mysql" />
+		</table>
+		<table tableName="auctions" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+			<generatedKey column="id" sqlStatement="Mysql" />
+		</table>
+		<table tableName="auction_image" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+			<generatedKey column="id" sqlStatement="Mysql" />
+		</table>
+		<table tableName="image" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+			<generatedKey column="id" sqlStatement="Mysql" />
+		</table>
+		
 
 	</context>
 </generatorConfiguration>

@@ -1,4 +1,4 @@
-package com.cfzd.article.bean;
+package com.cfzd.bean.article;
 
 public class Article {
     /**

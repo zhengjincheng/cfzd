@@ -10,8 +10,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.cfzd.article.bean.Article;
-import com.cfzd.article.dao.ArticleMapper;
+import com.cfzd.bean.article.Article;
+import com.cfzd.dao.article.ArticleMapper;
 import com.cfzd.mybatis.bean.User;
 
 public class TestSingleTable {

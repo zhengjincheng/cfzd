@@ -1,0 +1,218 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+<title>自建拍场</title>
+<link rel="stylesheet" type="text/css" href="./webuploader.css" />
+<script src="../../static/jquery.mobile-1.4.5/jquery-1.11.1.js"
+	type="text/javascript"></script>
+<script src="./webuploader.js"
+	type="text/javascript"></script>
+<link href="../../static/jquery.mobile-1.4.5/jquery.mobile-1.4.5.css"
+	rel="stylesheet" type="text/css">
+<script src="../../static/jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"
+	type="text/javascript"></script>
+
+<style type="text/css">
+li {
+	list-style:none;
+}
+.filelist{
+	padding:0 0 0 0;
+}
+.title{
+    display: block;
+    position: absolute ;
+    right: 0px;
+    bottom: 0px;
+    height: 40px;
+    width: 40px;
+    z-index: 200;
+    #background: url(./success.png) no-repeat right bottom;
+}
+ .placeholder {
+    border: 3px dashed #e6e6e6;
+    text-align: center;
+    background: url(./image.png) center 93px no-repeat;
+    color: #cccccc;
+    font-size: 18px;
+    position: relative;
+}
+</style>
+<script type="text/javascript">
+
+// 图片上传demo
+jQuery(function() {
+    var $ = jQuery,
+        $list = $('#fileList'),
+        // 优化retina, 在retina下这个值是2
+        ratio = window.devicePixelRatio || 1,
+
+        // 缩略图大小
+        thumbnailWidth = 100 * ratio,
+        thumbnailHeight = 100 * ratio,
+
+        // Web Uploader实例
+        uploader;
+
+    // 初始化Web Uploader
+    uploader = WebUploader.create({
+        fileNumLimit: 1,
+        // 自动上传。
+        auto: true,
+
+        // swf文件路径
+        swf: '/js/Uploader.swf',
+
+        // 文件接收服务端。
+        server: '../../rest/file',
+
+        // 选择文件的按钮。可选。
+        // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+        pick: {id:'#filePicker',multiple :false},
+
+        // 只允许选择文件，可选。
+        accept: {
+            title: 'Images',
+            extensions: 'gif,jpg,jpeg,bmp,png',
+            mimeTypes: 'image/*'
+        }
+    });
+
+    // 当有文件添加进来的时候
+    uploader.on( 'fileQueued', function( file ) {
+        var $li = $(
+                '<li id="' + file.id + '"  style="position:relative" >' +
+                    '<img style="width:100%" ></img>'  +
+					//'<img class="title" src="./success.png"></img>'+
+                '</li>'
+                ),
+            $img = $li.find('img').first();
+
+        $list.append( $li );
+
+        // 创建缩略图
+        uploader.makeThumb( file, function( error, src ) {
+            if ( error ) {
+                $img.replaceWith('<span>不能预览</span>');
+                return;
+            }
+
+            $img.attr( 'src', src );
+        }, thumbnailWidth, thumbnailHeight );
+    });
+
+    // 文件上传过程中创建进度条实时显示。
+    uploader.on( 'uploadProgress', function( file, percentage ) {
+        var $li = $( '#'+file.id ),
+            $percent = $li.find('.progress span');
+
+        // 避免重复创建
+        if ( !$percent.length ) {
+            $percent = $('<p class="progress"><span></span></p>')
+                    .appendTo( $li )
+                    .find('span');
+        }
+
+        $percent.css( 'width', percentage * 100 + '%' );
+    });
+
+    // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+    uploader.on( 'uploadSuccess', function( file,r  ) {
+        $( '#'+file.id ).addClass('upload-state-done');
+		var $li = $( '#'+file.id );
+		var imageid="image"+r.id;
+		$li.append('<img id="'+imageid+'" class="title" src="./success.png"></img>');
+		$( '#dndArea').css("display","none");
+
+		$('#'+imageid).on("click", function(){
+		            //如果删除远程图片成功后，删除dom 中的图片，重置uploader，显示上传按钮
+					$( '#'+file.id ).remove();
+					uploader.reset();
+					$( '#dndArea').css("display","block")
+					console.log("调用远程删除图片"+this.id);
+		 });
+		console.log(r);
+    });
+
+    // 文件上传失败，现实上传出错。
+    uploader.on( 'uploadError', function( file ) {
+        var $li = $( '#'+file.id ),
+            $error = $li.find('div.error');
+
+        // 避免重复创建
+        if ( !$error.length ) {
+            $error = $('<div class="error"></div>').appendTo( $li );
+        }
+
+        $error.text('上传失败');
+    });
+
+    // 完成上传完了，成功或者失败，先删除进度条。
+    uploader.on( 'uploadComplete', function( file ) {
+        $( '#'+file.id ).find('.progress').remove();
+		
+		//不显示上传图片按钮
+		//$( '#dndArea').css("display","none");
+		//uploader.reset();
+    });
+});
+
+
+</script>
+</head>
+
+<body>
+	
+	<div data-role="page" id="page">
+		 <div data-role="content">
+			<div id="uploader">
+				<ul id="fileList" class="filelist"></ul>
+			</div>
+			<div id="dndArea" class="placeholder">
+					<div id="filePicker">选择图片</div>
+					<p>格式为jpg或者png，最佳尺寸为640*300</p>
+			</div>
+			<!--
+			<form method="post" action="demoform.asp">
+
+				<div data-role="fieldcontain">
+					<label for="textinput-1">拍场主题:</label>
+					<input name="textinput-1" id="textinput-1" type="text" placeholder="主题-副标题" value="">
+					<label for="textinput-2">拍场列表:</label>
+					<label id="textinput-2">为本拍场上传拍品，不少于两件</label>
+
+					<label for="zskt">知识课堂：</label>
+					<input type="text" name="zskt" id="zskt" placeholder="选填">
+				</div>
+			</form>
+			-->
+				<ul data-role="listview" data-inset="true">
+				 <li>
+					拍场主题:  <input data-role="none" style="display:inline;border:0px;outline:none" name="textinput-1" id="textinput-1" type="text" placeholder="主题-副标题" value="">
+				  </li>
+				  <li>
+					<a href="#"  style="padding-left:1em">
+					<p id="placeholder" style="display:none">拍场列表 为本拍场上传拍品，不少于两件</p><img src="../images/s1-icon.jpg" style="width:50px;padding-right:5px"/><img src="../images/s1-icon.jpg" style="width:50px;padding-right:5px"/>
+					</a>
+				  </li>
+				  <li>
+					结束时间:  <input data-role="none" style="display:inline;border:0px;outline:none" type="date" >
+				  </li>
+				  <li>
+					知识课堂:  <input data-role="none" style="display:inline;border:0px;outline:none" name="textinput-1" id="textinput-1" type="text" placeholder="选填" value="">
+				  </li>
+				 
+				</ul>
+				<div class="ui-grid-a ">
+					<div class="ui-block-a"><a class="ui-btn ui-shadow ui-corner-all" href="#">保存草稿</a></div>
+					<div class="ui-block-b"><a class="ui-btn ui-shadow ui-corner-all" href="#">发布拍场</a></div>
+				</div>
+
+		</div>
+	</div>
+ </body>
+</html>

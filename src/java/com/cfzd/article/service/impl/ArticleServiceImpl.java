@@ -10,13 +10,12 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.cfzd.article.bean.Article;
 import com.cfzd.article.bo.ArticleBO;
-import com.cfzd.article.dao.ArticleMapper;
 import com.cfzd.article.service.IArticleService;
+import com.cfzd.bean.article.Article;
+import com.cfzd.dao.article.ArticleMapper;
 
 @Service("ArticleService")
-
 public class ArticleServiceImpl implements IArticleService {
 	@Resource
 	private ArticleMapper dao;

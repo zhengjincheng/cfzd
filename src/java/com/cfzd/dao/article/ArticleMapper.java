@@ -1,9 +1,9 @@
-package com.cfzd.article.dao;
+package com.cfzd.dao.article;
 
 import java.util.Collection;
 import java.util.Map;
 
-import com.cfzd.article.bean.Article;
+import com.cfzd.bean.article.Article;
 
 public interface ArticleMapper {
     /**
