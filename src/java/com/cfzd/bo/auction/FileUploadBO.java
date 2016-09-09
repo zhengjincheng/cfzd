@@ -1,4 +1,4 @@
-package com.cfzd.article.bo;
+package com.cfzd.bo.auction;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;

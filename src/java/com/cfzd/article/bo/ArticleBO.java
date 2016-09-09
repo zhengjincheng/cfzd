@@ -3,6 +3,8 @@ package com.cfzd.article.bo;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.cfzd.bo.auction.ResultBO;
+
 @XmlRootElement(name="Article")
 public class ArticleBO extends  ResultBO{
 	 /**

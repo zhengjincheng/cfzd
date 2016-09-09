@@ -1,4 +1,4 @@
-package com.cfzd.article.service;
+package com.cfzd.service.article;
 
 import java.util.List;
 

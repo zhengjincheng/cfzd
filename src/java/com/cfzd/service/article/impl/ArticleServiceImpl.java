@@ -1,4 +1,4 @@
-package com.cfzd.article.service.impl;
+package com.cfzd.service.article.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,11 +11,11 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.cfzd.article.bo.ArticleBO;
-import com.cfzd.article.service.IArticleService;
 import com.cfzd.bean.article.Article;
 import com.cfzd.dao.article.ArticleMapper;
+import com.cfzd.service.article.IArticleService;
 
-@Service("ArticleService")
+@Service
 public class ArticleServiceImpl implements IArticleService {
 	@Resource
 	private ArticleMapper dao;

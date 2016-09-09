@@ -1,4 +1,4 @@
-package com.cfzd.article.bo;
+package com.cfzd.bo.auction;
 
 import java.io.Serializable;
 

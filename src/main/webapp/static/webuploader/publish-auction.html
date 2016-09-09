@@ -1,0 +1,136 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+<title>自建拍场</title>
+<link rel="stylesheet" type="text/css" href="./webuploader.css" />
+<script src="../../static/jquery.mobile-1.4.5/jquery-1.11.1.js"
+	type="text/javascript"></script>
+<script src="./webuploader.js"
+	type="text/javascript"></script>
+<link href="../../static/jquery.mobile-1.4.5/jquery.mobile-1.4.5.css"
+	rel="stylesheet" type="text/css">
+<script src="../../static/jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"
+	type="text/javascript"></script>
+
+<style type="text/css">
+li {
+	list-style:none;
+	vertical-align:center;
+}
+.filelist{
+	padding:0 0 0 0;
+}
+.ui-select{
+	display:inline;
+	float:right;
+}
+.modalDialog {
+    position: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 99999;
+    opacity:0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+}
+.show {
+    opacity:1;
+    pointer-events: auto;
+}
+.modalDialog > div {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #fff;
+}
+
+</style>
+<script type="text/javascript">
+
+jQuery(function() {
+	$("#fenlei").click(function () {
+			$("#openModal").addClass('show'); 
+			//$('#openModal').modal('show')
+	});
+	$("#openModal").click(function () {
+			$("#openModal").removeClass('show'); 
+	});
+	//防止点击事件传到模块框
+	$("#openModal>div").click(function () {
+		event.stopPropagation();
+	});
+	
+});
+
+
+</script>
+</head>
+
+<body>
+	
+	<div data-role="page" id="page">
+		 <div data-role="content">
+
+				<ul data-role="listview" data-inset="true">
+				  <li id="fenlei" data-icon="gear" ><a  style="background-color:#FFFFFF;font-weight:normal" href="#">分类</a></li>
+				  <li>
+					拍品名称:  <input data-role="none" style="display:inline;border:0px;outline:none" name="ppmc" id="ppmc" type="text" placeholder="默认拍品描述第一行可修改" value="">
+				  </li>
+				  <li>
+					起拍价  :  <input data-role="none" style="display:inline;border:0px;outline:none" name="qpj" id="qpj" type="text" placeholder="请输入起拍价" value="">
+				  </li>
+				  <li>
+					加价幅度:  <input data-role="none" style="display:inline;border:0px;outline:none" name="jjfd" id="jjfd" type="number" placeholder="请输入加价幅度" value="">
+				  </li>
+				  <li>
+					保证金  :  <input data-role="none" style="display:inline;border:0px;outline:none" name="bbj" id="bbj" type="text" placeholder="0" value="0">
+				  </li>
+				  <li>
+					一口价  :  <input data-role="none" style="display:inline;border:0px;outline:none" name="ykj" id="ykj"  type="number" >
+				  </li>
+				  <li>包邮  :  <input data-role="none" style="visibility:hidden"></input><span style="position:absolute;right:1em;top:6px">
+								<select name="flip-1" id="flip-1" data-role="slider" data-mini="true" >
+									<option value="off">Off</option>
+									<option value="on">On</option>
+								</select>
+							  </span>
+
+				  </li>
+				  <li>七天无理由退换货    :<input data-role="none" style="visibility:hidden"></input><span style="position:absolute;right:1em;top:6px">
+								<select name="flip-2" id="flip-2" data-role="slider" data-mini="true" >
+									<option value="off">Off</option>
+									<option value="on">On</option>
+								</select>
+							  </span>
+
+				  </li>
+				  
+				 
+				</ul>
+				<a class="ui-btn ui-shadow ui-corner-all" rel="external" href="./add-auction.html">确认</a>
+				<div class="modalDialog" id="openModal">
+					<div >
+						<ul data-role="listview" data-inset="true">
+						　　<li data-icon="false"><a href="#">书画</a></li>
+							<li data-icon="false"><a href="#">绘画</a></li>
+							<li data-icon="false"><a href="#">金石</a></li>
+							<li data-icon="false"><a href="#">另有</a></li>
+						</ul>
+					<div>
+				</div>
+
+		</div>
+	</div>
+ </body>
+</html>

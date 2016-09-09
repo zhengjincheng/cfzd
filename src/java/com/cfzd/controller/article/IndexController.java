@@ -1,4 +1,4 @@
-package com.cfzd.article.controller;
+package com.cfzd.controller.article;
 
 import javax.annotation.Resource;
 
@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.cfzd.article.service.IArticleService;
+import com.cfzd.service.article.IArticleService;
 
 @Controller
-@RequestMapping(value="guanzhu")
-public class GuanzhuController {
+@RequestMapping(value="index")
+public class IndexController {
 	@Resource
 	private IArticleService service;
 	

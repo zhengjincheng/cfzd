@@ -72,7 +72,7 @@ jQuery(function() {
 
         // 选择文件的按钮。可选。
         // 内部根据当前运行是创建，可能是input元素，也可能是flash.
-        pick: {id:'#filePicker',multiple :false},
+        pick: '#filePicker',
 
         // 只允许选择文件，可选。
         accept: {
@@ -195,7 +195,7 @@ jQuery(function() {
 					拍场主题:  <input data-role="none" style="display:inline;border:0px;outline:none" name="textinput-1" id="textinput-1" type="text" placeholder="主题-副标题" value="">
 				  </li>
 				  <li>
-					<a href="#"  style="padding-left:1em">
+					<a rel="external" href="./add-auction.html"  style="padding-left:1em">
 					<p id="placeholder" style="display:none">拍场列表 为本拍场上传拍品，不少于两件</p><img src="../images/s1-icon.jpg" style="width:50px;padding-right:5px"/><img src="../images/s1-icon.jpg" style="width:50px;padding-right:5px"/>
 					</a>
 				  </li>

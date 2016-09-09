@@ -1,4 +1,4 @@
-package com.cfzd.article.controller;
+package com.cfzd.controller.article;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cfzd.article.bo.ArticleBO;
-import com.cfzd.article.service.IArticleService;
+import com.cfzd.service.article.IArticleService;
 
 @Controller
 @RequestMapping(value = "article")

@@ -11,6 +11,8 @@
     <result column="imageid" jdbcType="INTEGER" property="imageid" />
     <result column="refid" jdbcType="INTEGER" property="refid" />
     <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
+    
   </resultMap>
   <sql id="Base_Column_List">
     <!--
@@ -31,6 +33,14 @@
     from auction_image
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByTypeAndRef"  resultMap="BaseResultMap">
+    select 
+    a.id id, a.imageid imageid, a.refid refid, a.type type
+    ,b.image_url image_url
+    from auction_image a,image b
+    where a.type = #{type} and a.refid= #{refid} and a.imageid=b.id
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--
       WARNING - @mbggenerated

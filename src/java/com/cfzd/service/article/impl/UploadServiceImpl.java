@@ -1,17 +1,22 @@
-package com.cfzd.article.service.impl;
+package com.cfzd.service.article.impl;
 
 import java.io.File;
+
 import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import com.cfzd.article.bo.FileUploadBO;
-import com.cfzd.article.service.IUploadService;
+
 import com.cfzd.bean.auction.Image;
+import com.cfzd.bo.auction.FileUploadBO;
+import com.cfzd.bo.auction.ImageBO;
 import com.cfzd.dao.auction.ImageMapper;
-@Service("UploadService")
+import com.cfzd.service.auction.IUploadService;
+@Service
 public class UploadServiceImpl implements IUploadService {
 	@Resource
 	private ImageMapper dao;
+	
 	
 	@Override
 	public FileUploadBO upload(MultipartFile file, String path) {
@@ -38,6 +43,19 @@ public class UploadServiceImpl implements IUploadService {
         	bo.setMessage(e.getMessage());
         }  
         return bo;  
+	}
+
+
+	@Override
+	public ImageBO find(Integer id){
+		ImageBO bo=null;
+		Image image= dao.selectByPrimaryKey(id);
+		if (image!=null){
+			bo=new ImageBO();
+			bo.setId(image.getId());
+			bo.setImageUrl(image.getImageUrl());
+		}
+		return bo;
 	}
 
 } 

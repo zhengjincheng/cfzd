@@ -1,4 +1,4 @@
-package com.cfzd.article.controller;
+package com.cfzd.controller.article;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.cfzd.article.bo.FileUploadBO;
-import com.cfzd.article.service.IUploadService;
+import com.cfzd.bo.auction.FileUploadBO;
+import com.cfzd.service.auction.IUploadService;
 @Controller
 public class UploadController {
 	
